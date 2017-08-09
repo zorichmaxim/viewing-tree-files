@@ -1,0 +1,12 @@
+<section>
+    <h3>{{incomingFolder.title}}</h3>
+    <div [ngSwitch]="items.state" *ngFor="let items of incomingFolder.data">
+        <ng-template [ngSwitchCase]="file">
+            <app-file [incomingFile]="items"></app-file>
+        </ng-template>
+        <ng-template [ngSwitchCase]="folder">
+            <app-folder [incomingFolder]="items"></app-folder>
+        </ng-template>
+    </div>
+</section>
+
