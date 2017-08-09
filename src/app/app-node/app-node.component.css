@@ -1,0 +1,18 @@
+.app-node-component {
+    display: flex;
+    flex-direction: row;
+}
+.folder-icon {
+    background: yellow;
+}
+.file-icon {
+    background: blue;
+}
+.default-icon {
+    background: gray;
+}
+.icon {
+    display: block;
+    width: 14px;
+    height: 14px;
+}
