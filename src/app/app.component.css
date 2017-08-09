@@ -1,0 +1,10 @@
+.root-title {
+    display: inline-block;
+}
+.control-btn {
+    padding: 5px;
+    color: white;
+    border: none;
+    background: lightblue;
+    margin: 4px;
+}

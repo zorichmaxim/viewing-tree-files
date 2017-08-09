@@ -5,12 +5,14 @@ import {AppComponent} from './app.component';
 import {FileComponent} from './file/file.component';
 import {FolderComponent} from './folder/folder.component';
 import {LocalStorageService} from 'app/servies/local-storage.service';
+import { ProjectionTemplateComponent } from './projection-template/projection-template.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         FileComponent,
-        FolderComponent
+        FolderComponent,
+        ProjectionTemplateComponent
     ],
     imports: [
         BrowserModule
