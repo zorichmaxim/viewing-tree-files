@@ -1,8 +1,6 @@
-<section class="folder-section">
-        <app-node icon='folder' name='first folder' checked='false'></app-node>
-        <app-button>
-            <button>+file</button>
-            <button>+folder</button>
-            <button>edit</button>
-        </app-button>
-</section>
+<app-node icon='folder' name='first folder' [checked]='false'>
+    <app-button (click)="action()">+file</app-button>
+    <app-button (click)="action()">+folder</app-button>
+    <app-button (click)="action()">edit</app-button>
+</app-node>
+

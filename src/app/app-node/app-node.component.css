@@ -1,6 +1,8 @@
-.app-node-component {
+:host {
     display: flex;
     flex-direction: row;
+    height: 40px;
+    align-items: center;
 }
 .folder-icon {
     background: yellow;

@@ -1,6 +1,5 @@
-<section class="file-section">
-    <app-node icon='file' name='first file' checked='true'></app-node>
-    <app-button>
-        <button>Edit</button>
-    </app-button>
-</section>
+<app-node icon='file' name='first file' [checked]='true'>
+    <app-button (click)="action()">Edit</app-button>
+</app-node>
+
+

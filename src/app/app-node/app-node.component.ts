@@ -25,7 +25,6 @@ export class AppNodeComponent implements OnInit, Input {
         }
     }
 
-
     constructor() {
     }
 

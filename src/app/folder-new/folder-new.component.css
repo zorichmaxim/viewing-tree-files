@@ -1,4 +1,4 @@
-.folder-section {
+:host {
     display: flex;
     align-items: center;
 }

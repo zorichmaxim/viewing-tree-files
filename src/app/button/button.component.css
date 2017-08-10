@@ -1,4 +1,5 @@
-button {
+app-button {
+    display: block;
     padding: 5px;
     color: white;
     border: none;
