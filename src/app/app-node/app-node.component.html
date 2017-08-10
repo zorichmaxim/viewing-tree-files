@@ -1,6 +1,6 @@
-<section class="app-node-component">
-    <div [ngClass]="iconStyle" class="icon"></div>
-    <input type="checkbox" checked="checked">
-    <div>{{name}}</div>
-</section>
+<div [ngClass]="iconStyle" class="icon"></div>
+<input type="checkbox" [checked]="checked" class="delete-flag">
+<div>{{name}}</div>
+<ng-content></ng-content>
+
 

@@ -1,0 +1,9 @@
+app-button {
+    display: block;
+    padding: 5px;
+    color: white;
+    border: none;
+    background: lightblue;
+    margin: 4px;
+}
+

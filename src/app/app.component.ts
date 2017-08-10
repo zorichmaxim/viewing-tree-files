@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-//import {LocalStorageService} from 'app/servies/local-storage.service';
-//import {State} from 'app/interfaces/interfaces';
 
 @Component({
     selector: 'app-root',
@@ -8,27 +6,18 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-    constructor(){}
+
+    private fileName: string;
+    private folderName: string;
+    private checked: boolean;
+
+    constructor(){
+        this.fileName = 'File 1';
+        this.folderName = 'Folder 1';
+        this.checked = true;
+    }
 
     ngOnInit(){
 
     }
 }
-
-
-
-
-
-
-/*
- private dataStorage: State;
- private rootTitle: string;
-
- ngOnInit() {
- this.dataStorage = this.localStorage.haslocalStorage() ? this.localStorage.dataState : false;
- }
-
- constructor(private localStorage: LocalStorageService) {
- this.rootTitle = 'root';
- }
- */
