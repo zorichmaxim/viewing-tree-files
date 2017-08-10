@@ -10,7 +10,6 @@ export class FileNewComponent implements OnInit, Input {
     @Input() name: string;
     @Input() checked : boolean;
 
-
     constructor() {
     }
 

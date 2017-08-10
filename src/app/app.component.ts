@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
     constructor(){
         this.fileName = 'File 1';
         this.folderName = 'Folder 1';
-        this.checked = true;
+        this.checked = false;
     }
 
     ngOnInit(){
