@@ -6,7 +6,16 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-    constructor(){}
+
+    private fileName: string;
+    private folderName: string;
+    private checked: boolean;
+
+    constructor(){
+        this.fileName = 'File 1';
+        this.folderName = 'Folder 1';
+        this.checked = true;
+    }
 
     ngOnInit(){
 

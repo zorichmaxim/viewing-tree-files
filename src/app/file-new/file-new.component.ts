@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
-  selector: 'app-file-new',
-  templateUrl: './file-new.component.html',
-  styleUrls: ['./file-new.component.css']
+    selector: 'app-file-new',
+    templateUrl: './file-new.component.html',
+    styleUrls: ['./file-new.component.css']
 })
-export class FileNewComponent implements OnInit {
+export class FileNewComponent implements OnInit, Input {
 
-  constructor() { }
+    @Input() name: string;
+    @Input() checked : boolean;
 
-  ngOnInit() {
-  }
+
+    constructor() {
+    }
+
+    ngOnInit() {
+    }
 
 }
