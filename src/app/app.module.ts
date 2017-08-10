@@ -1,11 +1,13 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
-import {AppComponent} from './app.component';
-import {AppNodeComponent} from './app-node/app-node.component';
-import {ButtonComponent} from './button/button.component';
-import {FileNewComponent} from './file-new/file-new.component';
-import {FolderNewComponent} from './folder-new/folder-new.component';
+import {AppComponent} from 'app/app.component';
+import {AppNodeComponent} from 'app/app-node/app-node.component';
+import {ButtonComponent} from 'app/button/button.component';
+import {FileNewComponent} from 'app/file-new/file-new.component';
+import {FolderNewComponent} from 'app/folder-new/folder-new.component';
+
+import {LocalStorageService} from 'app/service/local-storage.service';
 
 @NgModule({
     declarations: [
@@ -18,7 +20,9 @@ import {FolderNewComponent} from './folder-new/folder-new.component';
     imports: [
         BrowserModule
     ],
-    providers: [],
+    providers: [
+        LocalStorageService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

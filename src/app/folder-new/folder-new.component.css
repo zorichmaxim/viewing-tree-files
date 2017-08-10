@@ -1,4 +1,6 @@
 :host {
-    display: flex;
-    align-items: center;
+}
+.folder-deep {
+    margin: 3px 10px;
+    width: 100%;
 }

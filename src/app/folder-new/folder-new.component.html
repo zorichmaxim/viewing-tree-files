@@ -2,4 +2,19 @@
     <app-button>+file</app-button>
     <app-button>+folder</app-button>
     <app-button>edit</app-button>
+    <div class="folder-deep">
+        <ng-container *ngFor="let items of incomingFolders">
+            <app-folder-new
+                [name]="ApplicationFolders[items].name"
+                [checked]="checked"
+                [incomingFolders]="ApplicationFolders[items].folders"
+                [incomingFiles]="ApplicationFolders[items].files">
+            </app-folder-new>
+        </ng-container>
+
+        <ng-container *ngFor="let items of incomingFiles">
+            <app-file-new [name]="ApplicationFiles[items].name" [checked]="checked"></app-file-new>
+        </ng-container>
+    </div>
 </app-node>
+

@@ -5,5 +5,6 @@ app-button {
     border: none;
     background: lightblue;
     margin: 4px;
+    height: 20px;
 }
 
