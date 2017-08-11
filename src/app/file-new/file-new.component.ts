@@ -7,6 +7,7 @@ import {Component, OnInit, Input} from '@angular/core';
 export class FileNewComponent implements OnInit, Input {
 
     @Input() name: string;
+    @Input() fileIndex: number;
     @Input() checked : boolean;
 
     constructor() {

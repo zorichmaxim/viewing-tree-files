@@ -1,4 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
+import {LocalStorageService} from 'app/service/local-storage.service';
 
 @Component({
     selector: 'app-node',
@@ -27,16 +28,20 @@ export class AppNodeComponent implements OnInit, Input {
         }
     }
 
-    constructor() {
+    constructor(private localStorageService: LocalStorageService) {
         this.editInputToogle = false;
         this.btnName = 'edit'
     }
 
     ngOnInit() {
-
     }
-    editName(){
+
+    editName(index, state) {
         this.editInputToogle = !this.editInputToogle;
         this.btnName = this.editInputToogle ? 'save' : 'edit';
+        this.localStorageService.editTargetItems(index, state, this.name);
+    }
+    addFile(){
+
     }
 }

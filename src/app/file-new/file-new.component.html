@@ -1,5 +1,5 @@
 <app-node icon="file" [name]="name" [checked]="checked" #filenode>
-    <app-button (click)="filenode.editName()">{{filenode.btnName}}</app-button>
+    <app-button (click)="filenode.editName(fileIndex, 'file')">{{filenode.btnName}}</app-button>
 </app-node>
 
 

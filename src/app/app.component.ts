@@ -16,12 +16,22 @@ export class AppComponent implements OnInit {
 
     constructor(private localStorageService: LocalStorageService) {
         this.checked = false;
-
         this.ApplicationFiles = this.localStorageService.files;
         this.ApplicationFolders = this.localStorageService.folders;
         this.enterPoint = this.ApplicationFolders[0];
     }
 
     ngOnInit() {
+    }
+
+    addFile(folders, files){
+        let key = Math.floor(Math.random()*100);
+        folders.push(key);
+        files[key] = {
+            name: `File ${key}`,
+            text: 'Something text'
+        };
+
+        console.log(folders, files, key)
     }
 }

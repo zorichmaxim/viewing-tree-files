@@ -11,11 +11,12 @@ export class FolderNewComponent implements OnInit, Input {
 
     @Input() name: string;
     @Input() checked: boolean;
+    @Input() folderIndex: number;
     @Input() incomingFiles: Array<number>;
     @Input() incomingFolders: Array<number>;
 
     private ApplicationFiles: IncomingFiles;
-    private ApplicationFolders: IncomingFolders;;
+    private ApplicationFolders: IncomingFolders;
 
     constructor(private localStorageService:LocalStorageService) {
         this.ApplicationFolders = localStorageService.folders;
