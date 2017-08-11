@@ -1,13 +1,19 @@
 <h3>{{enterPoint.name}}</h3>
-<ng-container  *ngFor="let items of enterPoint.folders" >
-    <app-folder-new [name]="ApplicationFolders[items].name"
-                    [checked]="checked"
-                    [incomingFolders]="ApplicationFolders[items].folders"
-                    [incomingFiles]="ApplicationFolders[items].files">
-    </app-folder-new>
-</ng-container>
+<app-button>+file</app-button>
+<app-button>+folder</app-button>
+<app-button>remove selected</app-button>
+<div class="folder-deep">
+    <ng-container *ngFor="let items of enterPoint.folders">
+        <app-folder-new [name]="ApplicationFolders[items].name"
+                        [checked]="checked"
+                        [incomingFolders]="ApplicationFolders[items].folders"
+                        [incomingFiles]="ApplicationFolders[items].files">
+        </app-folder-new>
+    </ng-container>
 
 
-<ng-container  *ngFor="let items of enterPoint.files" >
-    <app-file-new [name]="ApplicationFiles[items].name" [checked]="checked"></app-file-new>
-</ng-container>
+    <ng-container *ngFor="let items of enterPoint.files">
+        <app-file-new [name]="ApplicationFiles[items].name" [checked]="checked"></app-file-new>
+    </ng-container>
+</div>
+

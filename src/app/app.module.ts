@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 
 import {AppComponent} from 'app/app.component';
 import {AppNodeComponent} from 'app/app-node/app-node.component';
@@ -18,7 +19,8 @@ import {LocalStorageService} from 'app/service/local-storage.service';
         FolderNewComponent
     ],
     imports: [
-        BrowserModule
+        BrowserModule,
+        FormsModule
     ],
     providers: [
         LocalStorageService

@@ -1,10 +1,14 @@
-.root-title {
-    display: inline-block;
+:host {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: baseline;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    width: 100%;
 }
-.control-btn {
-    padding: 5px;
-    color: white;
-    border: none;
-    background: lightblue;
-    margin: 4px;
+.folder-deep {
+    margin: 3px 10px;
+    width: 100%;
 }
+

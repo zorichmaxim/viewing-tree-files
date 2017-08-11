@@ -7,7 +7,9 @@ import {Component, OnInit, Input} from '@angular/core';
 })
 export class AppNodeComponent implements OnInit, Input {
 
+    private editInputToogle: boolean;
     private iconStyle: string;
+    private btnName: string;
     @Input() name: string;
     @Input() checked: boolean;
 
@@ -26,9 +28,15 @@ export class AppNodeComponent implements OnInit, Input {
     }
 
     constructor() {
+        this.editInputToogle = false;
+        this.btnName = 'edit'
     }
 
     ngOnInit() {
 
+    }
+    editName(){
+        this.editInputToogle = !this.editInputToogle;
+        this.btnName = this.editInputToogle ? 'save' : 'edit';
     }
 }
