@@ -35,4 +35,15 @@ export class LocalStorageService {
         }
 
     }
+
+    addNewFile(folders, files){
+        let key = Math.floor(Math.random()*100);
+        folders.push(key);
+        files[key] = {
+            name: `File ${key}`,
+            text: 'Something text'
+        };
+        this.ApplicationFiles = files;
+        this.ApplicationFolders = folders;
+    }
 }

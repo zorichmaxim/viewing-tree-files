@@ -1,17 +1,17 @@
-const startRoot = {
+export const startRoot = {
     0: {
         name: 'root',
         folders: [],
         files: [0]
     }
 };
-const startFile = {
+export const startFile = {
     0: {
         name: 'File 0',
         text: 'Your file'
     },
 };
-const hasLocalStorage = (storageName: string) => {
+export const hasLocalStorage = (storageName: string) => {
     let startState;
     switch (storageName) {
         case 'ApplicationFolder':
@@ -24,7 +24,7 @@ const hasLocalStorage = (storageName: string) => {
     return localStorage[`${storageName}`] !== '[]' ? JSON.parse(localStorage[storageName]) : startState;
 };
 
-const setLocalStorage = (storageName: string, newData) => {
+export const setLocalStorage = (storageName: string, newData) => {
     localStorage.removeItem(`${storageName}`);
     localStorage[storageName] = JSON.stringify(newData);
 };

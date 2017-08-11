@@ -41,7 +41,4 @@ export class AppNodeComponent implements OnInit, Input {
         this.btnName = this.editInputToogle ? 'save' : 'edit';
         this.localStorageService.editTargetItems(index, state, this.name);
     }
-    addFile(){
-
-    }
 }
