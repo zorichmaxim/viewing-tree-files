@@ -1,11 +1,10 @@
 <h3>{{enterPoint.name}}</h3>
-<app-button (click)="addFileTest(enterPoint.files, ApplicationFiles)">+file</app-button>
-<app-button>+folder</app-button>
-<app-button>remove selected</app-button>
+<app-button (click)="addFile(enterPoint.files, ApplicationFiles)">+file</app-button>
+<app-button (click)="addFolder(enterPoint.folders, ApplicationFolders)">+folder</app-button>
+<app-button (click)="removeSelected()">remove selected</app-button>
 <div class="folder-deep">
     <ng-container *ngFor="let items of enterPoint.folders">
         <app-folder-new [name]="ApplicationFolders[items].name"
-                        [checked]="checked"
                         [incomingFolders]="ApplicationFolders[items].folders"
                         [incomingFiles]="ApplicationFolders[items].files"
                         [folderIndex]="items">
@@ -14,7 +13,6 @@
 
     <ng-container *ngFor="let items of enterPoint.files">
         <app-file-new [name]="ApplicationFiles[items].name"
-                      [checked]="checked"
                       [fileIndex]="items">
         </app-file-new>
     </ng-container>

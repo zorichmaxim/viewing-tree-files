@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {LocalStorageService} from 'app/service/local-storage.service';
+import {LocalStorageService} from 'app/service/storage';
 
 @Component({
     selector: 'app-node',
@@ -11,9 +11,11 @@ export class AppNodeComponent implements OnInit, Input {
     private editInputToogle: boolean;
     private iconStyle: string;
     private btnName: string;
-    @Input() name: string;
-    @Input() checked: boolean;
+    private checked: boolean;
 
+    @Input() itemIndex: number;
+    @Input() name: string;
+    @Input() state: string;
     @Input()
     set icon(icon: string) {
         switch (icon) {
@@ -30,7 +32,8 @@ export class AppNodeComponent implements OnInit, Input {
 
     constructor(private localStorageService: LocalStorageService) {
         this.editInputToogle = false;
-        this.btnName = 'edit'
+        this.btnName = 'edit';
+        this.checked = false;
     }
 
     ngOnInit() {
@@ -39,6 +42,11 @@ export class AppNodeComponent implements OnInit, Input {
     editName(index, state) {
         this.editInputToogle = !this.editInputToogle;
         this.btnName = this.editInputToogle ? 'save' : 'edit';
-        this.localStorageService.editTargetItems(index, state, this.name);
+        this.localStorageService.editTargetItems(index, state, this.name, 'name');
+    }
+
+    changes(){
+        this.checked = !this.checked;
+        this.localStorageService.editTargetItems(this.itemIndex, this.state, this.checked, 'deleted')
     }
 }

@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {LocalStorageService} from 'app/service/local-storage.service';
+import {LocalStorageService} from 'app/service/storage';
 import {IncomingFiles, IncomingFolders} from 'app/interfaces/interfaces';
 
 @Component({
@@ -9,8 +9,8 @@ import {IncomingFiles, IncomingFolders} from 'app/interfaces/interfaces';
 })
 export class FolderNewComponent implements OnInit, Input {
 
+    private state: string;
     @Input() name: string;
-    @Input() checked: boolean;
     @Input() folderIndex: number;
     @Input() incomingFiles: Array<number>;
     @Input() incomingFolders: Array<number>;
@@ -18,11 +18,20 @@ export class FolderNewComponent implements OnInit, Input {
     private ApplicationFiles: IncomingFiles;
     private ApplicationFolders: IncomingFolders;
 
-    constructor(private localStorageService:LocalStorageService) {
+    constructor(private localStorageService: LocalStorageService) {
         this.ApplicationFolders = localStorageService.folders;
         this.ApplicationFiles = localStorageService.files;
+        this.state = 'folder';
     }
 
     ngOnInit() {
+    }
+
+    addFile(displayFiles, files) {
+        this.localStorageService.addNewFile(displayFiles, files, this.folderIndex);
+    }
+
+    addFolder(displayFolder, folders) {
+        this.localStorageService.addNewFolder(displayFolder, folders, this.folderIndex);
     }
 }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LocalStorageService} from 'app/service/local-storage.service';
+import {LocalStorageService} from 'app/service/storage';
 
 @Component({
     selector: 'app-root',
@@ -8,14 +8,11 @@ import {LocalStorageService} from 'app/service/local-storage.service';
 })
 export class AppComponent implements OnInit {
 
-    private checked: boolean;
     private enterPoint: number;
-
     private ApplicationFiles: Object;
     private ApplicationFolders: Object;
 
     constructor(private localStorageService: LocalStorageService) {
-        this.checked = false;
         this.ApplicationFiles = this.localStorageService.files;
         this.ApplicationFolders = this.localStorageService.folders;
         this.enterPoint = this.ApplicationFolders[0];
@@ -24,7 +21,15 @@ export class AppComponent implements OnInit {
     ngOnInit() {
     }
 
-    addFileTest(folders, files){
-        this.localStorageService.addNewFile(folders, files)
+    addFile(displayFiles, files, folderIndex: number = 0) {
+        this.localStorageService.addNewFile(displayFiles, files, folderIndex);
+    }
+
+    addFolder(displayFolder, folders, folderIndex: number = 0) {
+        this.localStorageService.addNewFolder(displayFolder, folders, folderIndex);
+    }
+
+    removeSelected(){
+        this.localStorageService.removeSelected();
     }
 }

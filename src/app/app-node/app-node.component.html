@@ -1,5 +1,5 @@
 <div [ngClass]="iconStyle" class="icon"></div>
-<input type="checkbox" [checked]="checked" class="delete-flag">
+<input type="checkbox" [checked]="checked" [(ngModel)]="checked" class="delete-flag" (click)="changes()">
 <div [hidden]="editInputToogle">{{name}}</div>
 
 <div [hidden]="!editInputToogle">

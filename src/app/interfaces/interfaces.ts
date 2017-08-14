@@ -1,12 +1,14 @@
 interface File {
     name: string,
-    text: string
+    text: string,
+    checked: boolean
 }
 
 interface Folder {
     name: string,
     folders: Array<number>,
-    files: Array<number>
+    files: Array<number>,
+    checked: boolean
 }
 
 export interface IncomingFiles {

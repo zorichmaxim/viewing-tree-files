@@ -6,11 +6,13 @@ import {Component, OnInit, Input} from '@angular/core';
 })
 export class FileNewComponent implements OnInit, Input {
 
+    private state: string;
+
     @Input() name: string;
     @Input() fileIndex: number;
-    @Input() checked : boolean;
 
     constructor() {
+        this.state = 'file';
     }
 
     ngOnInit() {

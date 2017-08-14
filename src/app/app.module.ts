@@ -8,7 +8,7 @@ import {ButtonComponent} from 'app/button/button.component';
 import {FileNewComponent} from 'app/file-new/file-new.component';
 import {FolderNewComponent} from 'app/folder-new/folder-new.component';
 
-import {LocalStorageService} from 'app/service/local-storage.service';
+import {LocalStorageService} from 'app/service/storage';
 
 @NgModule({
     declarations: [
