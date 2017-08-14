@@ -27,11 +27,11 @@ export class FolderNewComponent implements OnInit, Input {
     ngOnInit() {
     }
 
-    addFile(displayFiles, files) {
+    addFile(displayFiles: Array<number>, files: IncomingFiles) {
         this.localStorageService.addNewFile(displayFiles, files, this.folderIndex);
     }
 
-    addFolder(displayFolder, folders) {
+    addFolder(displayFolder: Array<number>, folders: IncomingFolders) {
         this.localStorageService.addNewFolder(displayFolder, folders, this.folderIndex);
     }
 }

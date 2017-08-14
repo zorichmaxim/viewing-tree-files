@@ -20,12 +20,12 @@ export class LocalStorageService {
         return this.ApplicationFolders;
     }
 
-    editorFunction(previous, value, targetElement, property) {
+    editorFunction(previous, value, targetElement: number, property: string) {
         previous[targetElement][property] = value;
         return previous;
     }
 
-    editTargetItems(targetElement, state, value, propertyChange) {
+    editTargetItems(targetElement: number, state: string, value, propertyChange: string) {
         switch (propertyChange) {
             case 'name' :
                 this.changeProperty = 'name';
@@ -44,7 +44,7 @@ export class LocalStorageService {
         }
     }
 
-    addNewFile(displayFiles, files, folderIndex) {
+    addNewFile(displayFiles: Array<number>, files, folderIndex: number) {
         let applicationFolders = this.ApplicationFolders;
         let key = Math.floor(Math.random() * 1000);
         files[key] = {
@@ -58,7 +58,7 @@ export class LocalStorageService {
         displayFiles.push(key);
     }
 
-    addNewFolder(displayFolder, folders, folderIndex) {
+    addNewFolder(displayFolder: Array<number>, folders: Object, folderIndex:number) {
         let applicationFolders = this.ApplicationFolders;
         let key = Math.floor(Math.random() * 1000);
         folders[key] = {
