@@ -11,6 +11,9 @@ export const startFile = {
         text: 'Your file'
     },
 };
+export const forStartPoint = (storageName, newData) => {
+    localStorage[`${storageName}`] = JSON.stringify(newData);
+};
 export const hasLocalStorage = (storageName: string) => {
     let startState;
     switch (storageName) {
@@ -21,7 +24,7 @@ export const hasLocalStorage = (storageName: string) => {
             startState = startFile;
             break;
     }
-    return localStorage[`${storageName}`] !== '[]' ? JSON.parse(localStorage[storageName]) : startState;
+    return localStorage[`${storageName}`] !== undefined  ? JSON.parse(localStorage[storageName]) : forStartPoint(storageName, startState);
 };
 
 export const setLocalStorage = (storageName: string, newData) => {

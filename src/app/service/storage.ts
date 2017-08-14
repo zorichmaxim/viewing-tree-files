@@ -42,7 +42,6 @@ export class LocalStorageService {
                 this.ApplicationFiles = this.editorFunction(this.ApplicationFiles, value, targetElement, this.changeProperty);
                 break;
         }
-
     }
 
     addNewFile(displayFiles, files, folderIndex) {

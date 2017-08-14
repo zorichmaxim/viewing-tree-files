@@ -9,14 +9,14 @@ import {IncomingFiles, IncomingFolders} from 'app/interfaces/interfaces';
 })
 export class FolderNewComponent implements OnInit, Input {
 
+    private ApplicationFiles: IncomingFiles;
+    private ApplicationFolders: IncomingFolders;
     private state: string;
+
     @Input() name: string;
     @Input() folderIndex: number;
     @Input() incomingFiles: Array<number>;
     @Input() incomingFolders: Array<number>;
-
-    private ApplicationFiles: IncomingFiles;
-    private ApplicationFolders: IncomingFolders;
 
     constructor(private localStorageService: LocalStorageService) {
         this.ApplicationFolders = localStorageService.folders;
