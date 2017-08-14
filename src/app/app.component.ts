@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LocalStorageService} from 'app/service/storage';
-
+import {IncomingFiles, IncomingFolders} from 'app/interfaces/interfaces';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -21,15 +21,22 @@ export class AppComponent implements OnInit {
     ngOnInit() {
     }
 
-    addFile(displayFiles, files, folderIndex: number = 0) {
+    initializingFunc() {
+        this.ApplicationFiles = this.localStorageService.files;
+        this.ApplicationFolders = this.localStorageService.folders;
+        this.enterPoint = this.ApplicationFolders[0];
+    }
+
+    addFile(displayFiles: Array<number>, files: IncomingFiles, folderIndex: number = 0) {
         this.localStorageService.addNewFile(displayFiles, files, folderIndex);
     }
 
-    addFolder(displayFolder, folders, folderIndex: number = 0) {
+    addFolder(displayFolder: Array<number>, folders: IncomingFolders, folderIndex: number = 0) {
         this.localStorageService.addNewFolder(displayFolder, folders, folderIndex);
     }
 
-    removeSelected(){
+    removeSelected() {
         this.localStorageService.removeSelected();
+        this.initializingFunc();
     }
 }

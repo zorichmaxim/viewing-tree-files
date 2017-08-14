@@ -94,7 +94,6 @@ export class LocalStorageService {
                     let deleteFileIndex = folders[index].files.indexOf(+file);
                     if (deleteFileIndex !== -1) {
                         folders[index].files.splice(deleteFileIndex, 1);
-                        console.log(folders[index].files);
                     }
                 }
                 delete files[file];

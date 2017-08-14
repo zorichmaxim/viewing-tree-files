@@ -1,7 +1,7 @@
 <h3>{{enterPoint.name}}</h3>
 <app-button (click)="addFile(enterPoint.files, ApplicationFiles)">+file</app-button>
 <app-button (click)="addFolder(enterPoint.folders, ApplicationFolders)">+folder</app-button>
-<app-button (click)="removeSelected()">remove selected</app-button>
+<app-button (click)="removeSelected(enterPoint.folders, enterPoint.files)">remove selected</app-button>
 <div class="folder-deep">
     <ng-container *ngFor="let items of enterPoint.folders">
         <app-folder-new [name]="ApplicationFolders[items].name"
