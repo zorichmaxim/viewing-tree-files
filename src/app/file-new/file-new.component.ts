@@ -2,19 +2,19 @@ import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
     selector: 'app-file-new',
-    templateUrl: './file-new.component.html',
-    styleUrls: ['./file-new.component.css']
+    templateUrl: './file-new.component.html'
 })
 export class FileNewComponent implements OnInit, Input {
 
-    @Input() name: string;
-    @Input() checked : boolean;
+    private state: string;
 
+    @Input() name: string;
+    @Input() fileIndex: number;
 
     constructor() {
+        this.state = 'file';
     }
 
     ngOnInit() {
     }
-
 }
