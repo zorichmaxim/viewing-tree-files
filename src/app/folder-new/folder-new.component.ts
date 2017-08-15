@@ -7,31 +7,39 @@ import {IncomingFiles, IncomingFolders} from 'app/interfaces/interfaces';
     templateUrl: './folder-new.component.html',
     styleUrls: ['./folder-new.component.css']
 })
-export class FolderNewComponent implements OnInit, Input {
+export class FolderNewComponent implements OnInit, Input{
 
-    private ApplicationFiles: IncomingFiles;
-    private ApplicationFolders: IncomingFolders;
+    private applicationFiles: IncomingFiles;
+    private applicationFolders: IncomingFolders;
     private state: string;
+    private name: string;
+    private incomingFiles: Array<number>;
+    private incomingFolders: Array<number>;
 
-    @Input() name: string;
     @Input() folderIndex: number;
-    @Input() incomingFiles: Array<number>;
-    @Input() incomingFolders: Array<number>;
 
     constructor(private localStorageService: LocalStorageService) {
-        this.ApplicationFolders = localStorageService.folders;
-        this.ApplicationFiles = localStorageService.files;
         this.state = 'folder';
     }
 
     ngOnInit() {
+        this.initializingFunc();
     }
 
-    addFile(displayFiles: Array<number>, files: IncomingFiles) {
+    public initializingFunc() {
+        this.applicationFolders = this.localStorageService.folders;
+        this.applicationFiles = this.localStorageService.files;
+        this.name = this.applicationFolders[this.folderIndex].name;
+        this.incomingFolders = this.applicationFolders[this.folderIndex].folders;
+        this.incomingFiles = this.applicationFolders[this.folderIndex].files;
+        console.log('child');
+    }
+
+    private addFile(displayFiles: Array<number>, files: IncomingFiles): void {
         this.localStorageService.addNewFile(displayFiles, files, this.folderIndex);
     }
 
-    addFolder(displayFolder: Array<number>, folders: IncomingFolders) {
+    private addFolder(displayFolder: Array<number>, folders: IncomingFolders): void {
         this.localStorageService.addNewFolder(displayFolder, folders, this.folderIndex);
     }
 }

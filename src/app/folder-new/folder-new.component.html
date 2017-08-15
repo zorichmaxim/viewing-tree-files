@@ -1,21 +1,14 @@
 <app-node icon="folder" [name]="name" #filenode [state]="state" [itemIndex]="folderIndex">
-    <app-button (click)="addFile(incomingFiles, ApplicationFiles)">+file</app-button>
-    <app-button (click)="addFolder(incomingFolders, ApplicationFolders)">+folder</app-button>
+    <app-button (click)="addFile(incomingFiles, applicationFiles)">+file</app-button>
+    <app-button (click)="addFolder(incomingFolders, applicationFolders)">+folder</app-button>
     <app-button (click)="filenode.editName(folderIndex, 'folder')">{{filenode.btnName}}</app-button>
     <div class="folder-deep">
         <ng-container *ngFor="let items of incomingFolders">
-            <app-folder-new
-                [name]="ApplicationFolders[items].name"
-                [incomingFolders]="ApplicationFolders[items].folders"
-                [incomingFiles]="ApplicationFolders[items].files"
-                [folderIndex]="items">
-            </app-folder-new>
+            <app-folder-new [folderIndex]="items"></app-folder-new>
         </ng-container>
 
         <ng-container *ngFor="let items of incomingFiles">
-            <app-file-new [name]="ApplicationFiles[items].name"
-                          [fileIndex]="items">
-            </app-file-new>
+            <app-file-new [fileIndex]="items"></app-file-new>
         </ng-container>
     </div>
 </app-node>
