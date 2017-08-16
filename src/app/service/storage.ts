@@ -26,14 +26,7 @@ export class LocalStorageService {
     }
 
     editTargetItems(targetElement: number, state: string, value, propertyChange: string): void {
-        switch (propertyChange) {
-            case 'name' :
-                this.changeProperty = 'name';
-                break;
-            case 'deleted' :
-                this.changeProperty = 'checked';
-        }
-
+        this.changeProperty = propertyChange === 'name' ? 'name' : 'checked';
         switch (state) {
             case 'folder':
                 this.applicationFolders = this.editorFunction(this.applicationFolders, value, targetElement, this.changeProperty);

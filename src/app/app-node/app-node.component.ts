@@ -16,7 +16,6 @@ export class AppNodeComponent implements OnInit, Input {
     @Input() itemIndex: number;
     @Input() name: string;
     @Input() state: string;
-
     @Input()
     set icon(icon: string) {
         switch (icon) {
@@ -35,15 +34,16 @@ export class AppNodeComponent implements OnInit, Input {
         this.editInputToogle = false;
         this.btnName = 'edit';
         this.checked = false;
+
     }
 
     ngOnInit() {
     }
 
-    public editName(index: number, state: string): void {
+    public editName(state: string): void {
         this.editInputToogle = !this.editInputToogle;
         this.btnName = this.editInputToogle ? 'save' : 'edit';
-        this.localStorageService.editTargetItems(index, state, this.name, 'name');
+        this.localStorageService.editTargetItems(this.itemIndex, state, this.name, 'name');
     }
 
     public changes(): void {

@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {LocalStorageService} from 'app/service/storage';
 import {IncomingFiles, IncomingFolders} from 'app/interfaces/interfaces';
-import {FolderNewComponent} from 'app/folder-new/folder-new.component';
+import {SmartComponent} from 'app/smart/smart.component';
 
 @Component({
     selector: 'app-root',
@@ -13,18 +13,16 @@ export class AppComponent implements OnInit {
     private enterPoint: number;
     private applicationFiles: Object;
     private applicationFolders: Object;
-    private test: string;
 
     constructor(private localStorageService: LocalStorageService) {
-        this.test = 'one';
     }
 
     ngOnInit() {
-        this.initializingFunc()
+        this.initializingFunc();
     }
 
-    @ViewChild(FolderNewComponent)
-    private folderComponent: FolderNewComponent;
+    @ViewChild(SmartComponent)
+    private smartComponent: SmartComponent;
 
     private initializingFunc(): void {
         this.applicationFiles = this.localStorageService.files;
@@ -43,6 +41,6 @@ export class AppComponent implements OnInit {
     private removeSelected(): void {
         this.localStorageService.removeSelected();
         this.initializingFunc();
-        this.folderComponent.initializingFunc();
+        this.smartComponent.initializingFunc();
     }
 }

@@ -1,11 +1,12 @@
 <div [ngClass]="iconStyle" class="icon"></div>
 <input type="checkbox" [checked]="checked" [(ngModel)]="checked" class="delete-flag" (click)="changes()">
-<div *ngIf="editInputToogle">{{name}}</div>
+<div *ngIf="!editInputToogle">{{name}}</div>
 
-<div *ngIf="!editInputToogle">
+<div *ngIf="editInputToogle">
     <input type="text" [(ngModel)]="name">
 </div>
 
+<app-button (click)="editName('file')">{{btnName}}</app-button>
 <ng-content></ng-content>
 
 

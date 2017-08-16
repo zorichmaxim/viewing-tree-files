@@ -4,11 +4,11 @@
 <app-button (click)="removeSelected()">remove selected</app-button>
 <div class="folder-deep">
     <ng-container *ngFor="let items of enterPoint.folders">
-        <app-folder-new [folderIndex]="items"></app-folder-new>
+        <app-smart [state]="'folder'" [folderIndex]="items"></app-smart>
     </ng-container>
 
     <ng-container *ngFor="let items of enterPoint.files">
-        <app-file-new [fileIndex]="items"></app-file-new>
+        <app-smart [state]="'file'" [fileIndex]="items"></app-smart>
     </ng-container>
 </div>
 
