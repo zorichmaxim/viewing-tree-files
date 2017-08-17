@@ -3,7 +3,7 @@ export const hasLocalStorage = (storageName: string) => {
 };
 
 export const setLocalStorage = (storageName: string, newData) => {
-    localStorage.removeItem(`${storageName}`);
+    localStorage.removeItem(storageName);
     localStorage[storageName] = JSON.stringify(newData);
 };
 
