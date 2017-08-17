@@ -1,25 +1,16 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {IncomingFiles} from 'app/interfaces/interfaces';
+import {Component, Input} from '@angular/core';
 
 @Component({
     selector: 'app-file-new',
     templateUrl: './file-new.component.html'
 })
-export class FileNewComponent implements OnInit, Input {
+export class FileNewComponent implements Input {
 
     private state: string;
-    private name: string;
-    private applicationFiles: IncomingFiles;
 
-    @Input() fileIndex: number;
-    @Input() localStore: any;
-
-    constructor() {
-    }
+    @Input() name: string;
 
     ngOnInit() {
         this.state = 'file';
-        this.applicationFiles = this.localStore.files;
-        this.name = this.applicationFiles[this.fileIndex].name
     }
 }

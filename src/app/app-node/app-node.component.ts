@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {LocalStorageService} from 'app/service/storage';
 
 @Component({
@@ -6,7 +6,7 @@ import {LocalStorageService} from 'app/service/storage';
     templateUrl: './app-node.component.html',
     styleUrls: ['./app-node.component.css']
 })
-export class AppNodeComponent implements OnInit, Input {
+export class AppNodeComponent implements Input {
 
     private editInputToogle: boolean;
     private iconStyle: string;
@@ -34,16 +34,12 @@ export class AppNodeComponent implements OnInit, Input {
         this.editInputToogle = false;
         this.btnName = 'edit';
         this.checked = false;
-
-    }
-
-    ngOnInit() {
     }
 
     public editName(state: string): void {
         this.editInputToogle = !this.editInputToogle;
         this.btnName = this.editInputToogle ? 'save' : 'edit';
-        this.localStorageService.editTargetItems(this.itemIndex, state, this.name, 'name');
+        this.localStorageService.editTargetItems(this.itemIndex, this.state, this.name, 'name');
     }
 
     public changes(): void {

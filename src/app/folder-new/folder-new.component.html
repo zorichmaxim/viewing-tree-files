@@ -3,11 +3,11 @@
     <app-button (click)="addFolder(incomingFolders, applicationFolders)">+folder</app-button>
     <div class="folder-deep">
         <ng-container *ngFor="let items of incomingFolders">
-            <app-smart [state]="'folder'" [folderIndex]="items"></app-smart>
+            <app-folder-new [folderIndex]="items" [localStore]="localStore"></app-folder-new>
         </ng-container>
 
         <ng-container *ngFor="let items of incomingFiles">
-            <app-smart [state]="'file'" [fileIndex]="items"></app-smart>
+            <app-file-new [name]="childFileName(items)"></app-file-new>
         </ng-container>
     </div>
 </app-node>

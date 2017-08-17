@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {IncomingFiles, IncomingFolders} from 'app/interfaces/interfaces';
-import {LocalStorage} from 'app/service/decorator';
+import {LocalStorage} from 'app/decorator/decorator';
 
 @Injectable()
 export class LocalStorageService {
@@ -8,9 +8,6 @@ export class LocalStorageService {
     @LocalStorage() applicationFiles: IncomingFiles;
     @LocalStorage() applicationFolders: IncomingFolders;
     private changeProperty: string;
-
-    constructor() {
-    }
 
     get files() {
         return this.applicationFiles;
