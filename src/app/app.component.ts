@@ -1,6 +1,6 @@
-import {Component, OnInit, ViewChildren} from '@angular/core';
+import {Component, OnInit, ViewChildren, QueryList} from '@angular/core';
 import {LocalStorageService} from 'app/service/storage';
-import {IncomingFiles, IncomingFolders} from 'app/interfaces/interfaces';
+import {IIncomingFiles, IIncomingFolders} from 'app/interfaces/interfaces';
 import {FolderNewComponent} from 'app/folder-new/folder-new.component';
 
 @Component({
@@ -10,7 +10,7 @@ import {FolderNewComponent} from 'app/folder-new/folder-new.component';
 })
 export class AppComponent implements OnInit {
 
-    private enterPoint: IncomingFolders;
+    private enterPoint: IIncomingFolders;
     private applicationFiles: Object;
     private applicationFolders: Object;
 
@@ -21,8 +21,7 @@ export class AppComponent implements OnInit {
         this.initializingFunc();
     }
 
-    @ViewChildren(FolderNewComponent)
-    private folderComponent: FolderNewComponent;
+    @ViewChildren(FolderNewComponent) private folderComponent: QueryList<FolderNewComponent>;
 
     private initializingFunc(): void {
         this.applicationFiles = this.localStorageService.files;
@@ -30,11 +29,11 @@ export class AppComponent implements OnInit {
         this.enterPoint = this.applicationFolders[0];
     }
 
-    private addFile(displayFiles: Array<number>, files: IncomingFiles): void {
+    private addFile(displayFiles: Array<number>, files: IIncomingFiles): void {
         this.localStorageService.addNewFile(displayFiles, files, 0);
     }
 
-    private addFolder(displayFolder: Array<number>, folders: IncomingFolders): void {
+    private addFolder(displayFolder: Array<number>, folders: IIncomingFolders): void {
         this.localStorageService.addNewFolder(displayFolder, folders, 0);
     }
 
@@ -45,7 +44,8 @@ export class AppComponent implements OnInit {
     private removeSelected(): void {
         this.localStorageService.removeSelected();
         this.initializingFunc();
-        this.folderComponent['_results'].forEach((childComponent) => {
+        console.log(this.folderComponent);
+        this.folderComponent.forEach((childComponent) => {
             if (childComponent.state === 'file') {
                 return
             }

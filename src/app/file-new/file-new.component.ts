@@ -1,4 +1,5 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
+
 
 @Component({
     selector: 'app-file-new',
@@ -6,11 +7,14 @@ import {Component, Input} from '@angular/core';
 })
 export class FileNewComponent implements Input {
 
-    private state: string;
+    public state: string = 'file';
 
     @Input() name: string;
+    @Input() fileIndex: number;
+    @Output() changeNameFile: EventEmitter<{}> = new EventEmitter();
 
-    ngOnInit() {
-        this.state = 'file';
+    public reduce(event) {
+        event.index = this.fileIndex;
+        this.changeNameFile.emit(event)
     }
 }

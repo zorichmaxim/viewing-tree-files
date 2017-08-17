@@ -11,10 +11,10 @@ interface Folder {
     checked: boolean
 }
 
-export interface IncomingFiles {
+export interface IIncomingFiles {
     [index: number]: File
 }
 
-export interface IncomingFolders {
+export interface IIncomingFolders {
     [index: number]: Folder
 }

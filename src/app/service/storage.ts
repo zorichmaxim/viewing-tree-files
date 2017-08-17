@@ -1,28 +1,28 @@
 import {Injectable} from '@angular/core';
-import {IncomingFiles, IncomingFolders} from 'app/interfaces/interfaces';
+import {IIncomingFiles, IIncomingFolders} from 'app/interfaces/interfaces';
 import {LocalStorage} from 'app/decorator/decorator';
 
 @Injectable()
 export class LocalStorageService {
 
-    @LocalStorage() applicationFiles: IncomingFiles;
-    @LocalStorage() applicationFolders: IncomingFolders;
+    @LocalStorage() applicationFiles: IIncomingFiles;
+    @LocalStorage() applicationFolders: IIncomingFolders;
     private changeProperty: string;
 
-    get files() {
+    public get files() {
         return this.applicationFiles;
     }
 
-    get folders() {
+    public get folders() {
         return this.applicationFolders;
     }
 
-    editorFunction(previous, value, targetElement: number, property: string) {
+    public editorFunction(previous, value, targetElement: number, property: string) {
         previous[targetElement][property] = value;
         return previous;
     }
 
-    editTargetItems(targetElement: number, state: string, value, propertyChange: string): void {
+    public editTargetItems(targetElement: number, state: string, value, propertyChange: string): void {
         this.changeProperty = propertyChange === 'name' ? 'name' : 'checked';
         switch (state) {
             case 'folder':
@@ -34,7 +34,7 @@ export class LocalStorageService {
         }
     }
 
-    addNewFile(displayFiles: Array<number>, files, folderIndex: number): void {
+    public addNewFile(displayFiles: Array<number>, files, folderIndex: number): void {
         let applicationFolders = this.applicationFolders;
         let key = Math.floor(Math.random() * 1000);
         files[key] = {
@@ -48,7 +48,7 @@ export class LocalStorageService {
         displayFiles.push(key);
     }
 
-    addNewFolder(displayFolder: Array<number>, folders: Object, folderIndex: number): void {
+    public addNewFolder(displayFolder: Array<number>, folders: Object, folderIndex: number): void {
         let applicationFolders = this.applicationFolders;
         let key = Math.floor(Math.random() * 1000);
         folders[key] = {
@@ -62,7 +62,7 @@ export class LocalStorageService {
         displayFolder.push(key);
     }
 
-    removeSelected() {
+    public removeSelected() {
         let folders = this.applicationFolders,
             files = this.applicationFiles,
             deleteChildrensFolder = (childFolders) => {

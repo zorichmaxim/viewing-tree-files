@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {IncomingFiles, IncomingFolders} from 'app/interfaces/interfaces';
+import {IIncomingFiles, IIncomingFolders} from 'app/interfaces/interfaces';
 import {LocalStorageService} from 'app/service/storage';
 
 @Component({
@@ -9,21 +9,19 @@ import {LocalStorageService} from 'app/service/storage';
 })
 export class FolderNewComponent implements OnInit, Input {
 
-    private applicationFiles: IncomingFiles;
-    private applicationFolders: IncomingFolders;
-    private state: string;
+    private applicationFiles: IIncomingFiles;
+    private applicationFolders: IIncomingFolders;
+    public state: string = 'folder';
     private name: string;
     private incomingFiles: Array<number>;
     private incomingFolders: Array<number>;
 
     @Input() folderIndex: number;
-    @Input() localStore: any;
 
-    constructor(public localStorageService: LocalStorageService){
-
+    constructor(public localStorageService: LocalStorageService) {
     }
+
     ngOnInit() {
-        this.state = 'folder';
         this.initializingFunc();
     }
 
@@ -35,15 +33,20 @@ export class FolderNewComponent implements OnInit, Input {
         this.incomingFiles = this.applicationFolders[this.folderIndex].files;
     }
 
-    private addFile(displayFiles: Array<number>, files: IncomingFiles): void {
+    private addFile(displayFiles: Array<number>, files: IIncomingFiles): void {
         this.localStorageService.addNewFile(displayFiles, files, this.folderIndex);
     }
 
-    private addFolder(displayFolder: Array<number>, folders: IncomingFolders): void {
+    private addFolder(displayFolder: Array<number>, folders: IIncomingFolders): void {
         this.localStorageService.addNewFolder(displayFolder, folders, this.folderIndex);
     }
 
     private childFileName(items): string {
         return this.applicationFiles[items].name;
     }
+
+    public changeTargetItem(data) {
+        this.localStorageService.editTargetItems(data.index, data.state, data.name, data.property);
+    }
+
 }

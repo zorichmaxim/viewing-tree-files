@@ -1,13 +1,15 @@
-<app-node icon="folder" [name]="name" [state]="state" [itemIndex]="folderIndex">
+<app-node icon="folder" [name]="name" [state]="state"
+          [itemIndex]="folderIndex"
+          (changeTargetItem)="changeTargetItem($event)">
     <app-button (click)="addFile(incomingFiles, applicationFiles)">+file</app-button>
     <app-button (click)="addFolder(incomingFolders, applicationFolders)">+folder</app-button>
     <div class="folder-deep">
         <ng-container *ngFor="let items of incomingFolders">
-            <app-folder-new [folderIndex]="items" [localStore]="localStore"></app-folder-new>
+            <app-folder-new [folderIndex]="items"></app-folder-new>
         </ng-container>
 
         <ng-container *ngFor="let items of incomingFiles">
-            <app-file-new [name]="childFileName(items)"></app-file-new>
+            <app-file-new [name]="childFileName(items)" [fileIndex]="items" (changeNameFile)="changeTargetItem($event)"></app-file-new>
         </ng-container>
     </div>
 </app-node>

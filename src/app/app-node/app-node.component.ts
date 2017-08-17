@@ -1,5 +1,5 @@
-import {Component, Input} from '@angular/core';
-import {LocalStorageService} from 'app/service/storage';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
+//import {LocalStorageService} from 'app/service/storage';
 
 @Component({
     selector: 'app-node',
@@ -8,14 +8,15 @@ import {LocalStorageService} from 'app/service/storage';
 })
 export class AppNodeComponent implements Input {
 
-    private editInputToogle: boolean;
+    private editInputToogle: boolean = false;
     private iconStyle: string;
-    private btnName: string;
-    private checked: boolean;
+    private btnName: string = 'edit';
+    private checked: boolean = false;
 
     @Input() itemIndex: number;
     @Input() name: string;
     @Input() state: string;
+    @Output() changeTargetItem: EventEmitter<{}> = new EventEmitter();
     @Input()
     set icon(icon: string) {
         switch (icon) {
@@ -30,20 +31,17 @@ export class AppNodeComponent implements Input {
         }
     }
 
-    constructor(private localStorageService: LocalStorageService) {
-        this.editInputToogle = false;
-        this.btnName = 'edit';
-        this.checked = false;
+    constructor() {
     }
 
-    public editName(state: string): void {
+    public editName(): void {
         this.editInputToogle = !this.editInputToogle;
         this.btnName = this.editInputToogle ? 'save' : 'edit';
-        this.localStorageService.editTargetItems(this.itemIndex, this.state, this.name, 'name');
+        this.changeTargetItem.emit({index: this.itemIndex, state: this.state, name: this.name, property: 'name'});
     }
 
     public changes(): void {
         this.checked = !this.checked;
-        this.localStorageService.editTargetItems(this.itemIndex, this.state, this.checked, 'deleted')
+        this.changeTargetItem.emit({index: this.itemIndex, state: this.state, name: this.checked, property: 'deleted'})
     }
 }
