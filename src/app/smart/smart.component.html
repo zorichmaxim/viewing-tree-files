@@ -1,0 +1,10 @@
+<ng-container [ngSwitch]="state">
+    <ng-template [ngSwitchCase]="'folder'">
+        <app-folder-new [folderIndex]="folderIndex" [localStore]="localStorageService"></app-folder-new>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'file'">
+        <app-file-new [fileIndex]="fileIndex" [localStore]="localStorageService"></app-file-new>
+    </ng-template>
+</ng-container>
+
+

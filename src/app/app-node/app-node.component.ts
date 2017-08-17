@@ -34,18 +34,19 @@ export class AppNodeComponent implements OnInit, Input {
         this.editInputToogle = false;
         this.btnName = 'edit';
         this.checked = false;
+
     }
 
     ngOnInit() {
     }
 
-    editName(index:number, state:string) {
+    public editName(state: string): void {
         this.editInputToogle = !this.editInputToogle;
         this.btnName = this.editInputToogle ? 'save' : 'edit';
-        this.localStorageService.editTargetItems(index, state, this.name, 'name');
+        this.localStorageService.editTargetItems(this.itemIndex, state, this.name, 'name');
     }
 
-    changes(){
+    public changes(): void {
         this.checked = !this.checked;
         this.localStorageService.editTargetItems(this.itemIndex, this.state, this.checked, 'deleted')
     }

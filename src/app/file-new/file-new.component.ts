@@ -1,4 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
+import {IncomingFiles} from 'app/interfaces/interfaces';
 
 @Component({
     selector: 'app-file-new',
@@ -7,14 +8,18 @@ import {Component, OnInit, Input} from '@angular/core';
 export class FileNewComponent implements OnInit, Input {
 
     private state: string;
+    private name: string;
+    private applicationFiles: IncomingFiles;
 
-    @Input() name: string;
     @Input() fileIndex: number;
+    @Input() localStore: any;
 
     constructor() {
-        this.state = 'file';
     }
 
     ngOnInit() {
+        this.state = 'file';
+        this.applicationFiles = this.localStore.files;
+        this.name = this.applicationFiles[this.fileIndex].name
     }
 }

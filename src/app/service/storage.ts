@@ -5,19 +5,19 @@ import {LocalStorage} from 'app/service/decorator';
 @Injectable()
 export class LocalStorageService {
 
-    @LocalStorage() ApplicationFiles: IncomingFiles;
-    @LocalStorage() ApplicationFolders: IncomingFolders;
+    @LocalStorage() applicationFiles: IncomingFiles;
+    @LocalStorage() applicationFolders: IncomingFolders;
     private changeProperty: string;
 
     constructor() {
     }
 
     get files() {
-        return this.ApplicationFiles;
+        return this.applicationFiles;
     }
 
     get folders() {
-        return this.ApplicationFolders;
+        return this.applicationFolders;
     }
 
     editorFunction(previous, value, targetElement: number, property: string) {
@@ -25,27 +25,20 @@ export class LocalStorageService {
         return previous;
     }
 
-    editTargetItems(targetElement: number, state: string, value, propertyChange: string) {
-        switch (propertyChange) {
-            case 'name' :
-                this.changeProperty = 'name';
-                break;
-            case 'deleted' :
-                this.changeProperty = 'checked';
-        }
-
+    editTargetItems(targetElement: number, state: string, value, propertyChange: string): void {
+        this.changeProperty = propertyChange === 'name' ? 'name' : 'checked';
         switch (state) {
             case 'folder':
-                this.ApplicationFolders = this.editorFunction(this.ApplicationFolders, value, targetElement, this.changeProperty);
+                this.applicationFolders = this.editorFunction(this.applicationFolders, value, targetElement, this.changeProperty);
                 break;
             case 'file':
-                this.ApplicationFiles = this.editorFunction(this.ApplicationFiles, value, targetElement, this.changeProperty);
+                this.applicationFiles = this.editorFunction(this.applicationFiles, value, targetElement, this.changeProperty);
                 break;
         }
     }
 
-    addNewFile(displayFiles: Array<number>, files, folderIndex: number) {
-        let applicationFolders = this.ApplicationFolders;
+    addNewFile(displayFiles: Array<number>, files, folderIndex: number): void {
+        let applicationFolders = this.applicationFolders;
         let key = Math.floor(Math.random() * 1000);
         files[key] = {
             name: `File ${key}`,
@@ -53,13 +46,13 @@ export class LocalStorageService {
         };
 
         applicationFolders[folderIndex].files.push(key);
-        this.ApplicationFiles = files;
-        this.ApplicationFolders = applicationFolders;
+        this.applicationFiles = files;
+        this.applicationFolders = applicationFolders;
         displayFiles.push(key);
     }
 
-    addNewFolder(displayFolder: Array<number>, folders: Object, folderIndex:number) {
-        let applicationFolders = this.ApplicationFolders;
+    addNewFolder(displayFolder: Array<number>, folders: Object, folderIndex: number): void {
+        let applicationFolders = this.applicationFolders;
         let key = Math.floor(Math.random() * 1000);
         folders[key] = {
             name: `Folder ${key}`,
@@ -68,15 +61,30 @@ export class LocalStorageService {
         };
         applicationFolders[key] = folders[key];
         applicationFolders[folderIndex].folders.push(key);
-        this.ApplicationFolders = applicationFolders;
+        this.applicationFolders = applicationFolders;
         displayFolder.push(key);
     }
 
     removeSelected() {
-        let folders = this.ApplicationFolders;
-        let files = this.ApplicationFiles;
+        let folders = this.applicationFolders,
+            files = this.applicationFiles,
+            deleteChildrensFolder = (childFolders) => {
+                for (let fold of childFolders) {
+                    delete folders[fold];
+                }
+            },
+            deleteChildrensFiles = (childFiles) => {
+                for (let file of childFiles) {
+                    delete files[file]
+                }
+            };
+
         for (let folder in folders) {
             if (folders[folder].checked === true) {
+                let childFolders = folders[folder].folders;
+                let childFiles = folders[folder].files;
+                deleteChildrensFolder(childFolders);
+                deleteChildrensFiles(childFiles);
                 for (let index in folders) {
                     let deleteFolderIndex = folders[index].folders.indexOf(+folder);
                     if (deleteFolderIndex !== -1) {
@@ -86,7 +94,7 @@ export class LocalStorageService {
                 delete folders[folder];
             }
         }
-        this.ApplicationFolders = folders;
+        this.applicationFolders = folders;
 
         for (let file in files) {
             if (files[file].checked === true) {
@@ -99,7 +107,7 @@ export class LocalStorageService {
                 delete files[file];
             }
         }
-        this.ApplicationFiles = files;
-        this.ApplicationFolders = folders;
+        this.applicationFiles = files;
+        this.applicationFolders = folders;
     }
 }

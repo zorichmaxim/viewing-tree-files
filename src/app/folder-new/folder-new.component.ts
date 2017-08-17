@@ -1,5 +1,4 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {LocalStorageService} from 'app/service/storage';
 import {IncomingFiles, IncomingFolders} from 'app/interfaces/interfaces';
 
 @Component({
@@ -7,31 +6,39 @@ import {IncomingFiles, IncomingFolders} from 'app/interfaces/interfaces';
     templateUrl: './folder-new.component.html',
     styleUrls: ['./folder-new.component.css']
 })
-export class FolderNewComponent implements OnInit, Input {
+export class FolderNewComponent implements OnInit, Input{
 
-    private ApplicationFiles: IncomingFiles;
-    private ApplicationFolders: IncomingFolders;
+    private applicationFiles: IncomingFiles;
+    private applicationFolders: IncomingFolders;
     private state: string;
+    private name: string;
+    private incomingFiles: Array<number>;
+    private incomingFolders: Array<number>;
 
-    @Input() name: string;
     @Input() folderIndex: number;
-    @Input() incomingFiles: Array<number>;
-    @Input() incomingFolders: Array<number>;
+    @Input() localStore: any;
 
-    constructor(private localStorageService: LocalStorageService) {
-        this.ApplicationFolders = localStorageService.folders;
-        this.ApplicationFiles = localStorageService.files;
-        this.state = 'folder';
+    constructor() {
     }
 
     ngOnInit() {
+        this.state = 'folder';
+        this.initializingFunc();
     }
 
-    addFile(displayFiles: Array<number>, files: IncomingFiles) {
-        this.localStorageService.addNewFile(displayFiles, files, this.folderIndex);
+    public initializingFunc() {
+        this.applicationFolders = this.localStore.folders;
+        this.applicationFiles = this.localStore.files;
+        this.name = this.applicationFolders[this.folderIndex].name;
+        this.incomingFolders = this.applicationFolders[this.folderIndex].folders;
+        this.incomingFiles = this.applicationFolders[this.folderIndex].files;
     }
 
-    addFolder(displayFolder: Array<number>, folders: IncomingFolders) {
-        this.localStorageService.addNewFolder(displayFolder, folders, this.folderIndex);
+    private addFile(displayFiles: Array<number>, files: IncomingFiles): void {
+        this.localStore.addNewFile(displayFiles, files, this.folderIndex);
+    }
+
+    private addFolder(displayFolder: Array<number>, folders: IncomingFolders): void {
+        this.localStore.addNewFolder(displayFolder, folders, this.folderIndex);
     }
 }

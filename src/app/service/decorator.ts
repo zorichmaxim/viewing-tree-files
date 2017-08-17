@@ -14,10 +14,10 @@ export const startFile = {
 export const hasLocalStorage = (storageName: string) => {
     let startState;
     switch (storageName) {
-        case 'ApplicationFolder':
+        case 'applicationFolder':
             startState = startRoot;
             break;
-        case 'ApplicationFile':
+        case 'applicationFile':
             startState = startFile;
             break;
     }

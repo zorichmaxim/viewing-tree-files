@@ -9,6 +9,7 @@ import {FileNewComponent} from 'app/file-new/file-new.component';
 import {FolderNewComponent} from 'app/folder-new/folder-new.component';
 
 import {LocalStorageService} from 'app/service/storage';
+import { SmartComponent } from './smart/smart.component';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import {LocalStorageService} from 'app/service/storage';
         AppNodeComponent,
         ButtonComponent,
         FileNewComponent,
-        FolderNewComponent
+        FolderNewComponent,
+        SmartComponent
     ],
     imports: [
         BrowserModule,
