@@ -1,2 +1,2 @@
-<app-node icon="file" [name]="name" [state]="state" [itemIndex]="fileIndex"></app-node>
+<app-node icon="file" [name]="name" [state]="state" (changeTargetItem)="reduce($event)"></app-node>
 
